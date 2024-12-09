@@ -1,0 +1,31 @@
+ALGORITHM insertion_sort
+VAR 
+    arr: ARRAY_OF_INTEGER
+    n, i, j, key: INTEGER
+
+BEGIN
+    write("Entrez la taille du tableau: ")
+    read(n)
+
+    FOR i FROM 0 TO n-1 DO
+        write("Entrez l'élément ", i+1)
+        read(arr[i])
+    END_FOR
+
+    FOR i FROM 1 TO n-1 DO
+        key <- arr[i]
+        j <- i - 1
+
+        WHILE j >= 0 AND arr[j] > key DO
+            arr[j+1] <- arr[j]
+            j <- j - 1
+        END_WHILE
+
+        arr[j+1] <- key
+    END_FOR
+
+    write("Tableau trié: ")
+    FOR i FROM 0 TO n-1 DO
+        write(arr[i])
+    END_FOR
+END

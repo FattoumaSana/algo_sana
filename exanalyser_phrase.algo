@@ -1,0 +1,42 @@
+ALGORITHM analyser_phrase
+VAR 
+    longueur, nombre_mots, nombre_voyelles: INTEGER
+    caractere: CHAR
+    dans_un_mot: BOOLEAN
+
+BEGIN
+    longueur = 0
+    nombre_mots = 0
+    nombre_voyelles = 0
+    dans_un_mot = FALSE
+
+    REPEAT
+        write("Entrez un caractère : ")
+        read(caractere)
+
+        IF caractere <> '.' THEN
+            longueur = longueur + 1
+
+            IF caractere IN ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'] THEN
+                nombre_voyelles = nombre_voyelles + 1
+            END_IF
+
+            IF caractere <> ' ' THEN
+                dans_un_mot = TRUE
+            ELSE
+                IF dans_un_mot THEN
+                    nombre_mots = nombre_mots + 1
+                    dans_un_mot = FALSE
+                END_IF
+            END_IF
+        END_IF
+    UNTIL caractere = '.'
+
+    IF dans_un_mot THEN
+        nombre_mots = nombre_mots + 1
+    END_IF
+
+    write("Longueur de la phrase : ", longueur)
+    write("Nombre de mots : ", nombre_mots)
+    write("Nombre de voyelles : ", nombre_voyelles)
+END
